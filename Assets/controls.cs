@@ -4,87 +4,49 @@ using UnityEngine;
 
 public class controls : MonoBehaviour
 {
-    [Header("Player Properties")]
-    public float playerSpeed = 5f;
-    //public float playerJumpHeight = 1f;
-    public float changeLaneSpeed = 10f;
-    //public float gravity = 12f;
+    private const float LANE_DISTANCE = 3.0f;
 
-    [Header("Lane Properties")]
-    public float laneWidth = 1.5f;
-    private int laneIndex = 0;
 
-    [Header("Rotation Properties")]
-    float temp;
-    bool isRotating;
-    int horizontalDirection;
+    private float speed = 5.0f;
+    private int desiredLane = 1;
 
     private CharacterController myCharacterController;
-    private Vector3 velocity;
-
-    bool userInput = true;
 
     private void Start()
     {
         myCharacterController = GetComponent<CharacterController>();
-        laneIndex = 0;
+   
     }
 
     private void Update()
     {
-        Move();
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            MoveLane(false);
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            MoveLane(true);
+
+        // Calculate future position
+        Vector3 targetPosition = transform.position.z * Vector3.forward;
+        if (desiredLane == 0)
+        {
+            targetPosition += Vector3.left * LANE_DISTANCE;
+        } else if (desiredLane == 2)
+        {
+            targetPosition += Vector3.right * LANE_DISTANCE;
+        }
+
+        Vector3 moveVector = Vector3.zero;
+        moveVector.x = (targetPosition - transform.position).normalized.x * speed;
+        moveVector.z = speed;
+
+        // Move player
+        myCharacterController.Move(moveVector * Time.deltaTime);
     }
 
-
-    private void Move()
+    private void MoveLane(bool goingRight)
     {
-
-        if (userInput == true)
-        {
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                print("Left");
-                if (laneIndex == 0 || laneIndex == 1)
-                {
-                    laneIndex--;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                print("Right");
-                if (laneIndex == 0 || laneIndex == -1)
-                {
-                    laneIndex++;
-                }
-            }
-            else //if (myCharacterController.isGrounded)
-            {
-                velocity = Vector3.forward * playerSpeed;
-
-                //if (Input.GetKeyDown(KeyCode.UpArrow))
-                //{
-                //    velocity.y = Mathf.Sqrt(2 * gravity * playerJumpHeight);
-                //}
-            }
-        }
-
-        //velocity.y -= gravity * Time.deltaTime;
-
-        Vector3 moveAmount = velocity * Time.deltaTime;
-        float targetX = laneIndex * laneWidth;
-        float dirX = Mathf.Sign(targetX - transform.position.x);
-        float deltaX = changeLaneSpeed * dirX * Time.deltaTime;
-
-        // Correct for overshoot
-        if (Mathf.Sign(targetX - (transform.position.x + deltaX)) != dirX)
-        {
-            float overshoot = targetX - (transform.position.x + deltaX);
-            deltaX += overshoot;
-        }
-        moveAmount.x = deltaX;
-
-        myCharacterController.Move(moveAmount);
+        desiredLane += (goingRight) ? 1 : -1;
+        desiredLane = Mathf.Clamp(desiredLane, 0, 2);
     }
 
 }

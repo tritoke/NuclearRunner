@@ -4,46 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Rotation Properties")]
-    float temp;
-    bool isRotating;
-    int horizontalDirection;
+    public Transform lookAt;
+    public Vector3 offset = new Vector3(0, 5.0f, -5.0f);
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        transform.position = lookAt.position + offset;
     }
 
-    private void checkRotate()
+    private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.A) && !isRotating)
-        {
-            isRotating = true;
-            horizontalDirection = -1;
-            temp = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.D) && !isRotating)
-        {
-            isRotating = true;
-            horizontalDirection = 1;
-            temp = 0;
-        }
-
-        transform.Rotate(Vector3.up * 90 * Time.fixedDeltaTime * horizontalDirection, Space.World);
-
-        temp += 90 * Time.fixedDeltaTime;
-        if (temp >= 90)
-        {
-            temp = 0;
-            horizontalDirection = 0;
-            isRotating = false;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //checkRotate();
+        Vector3 desiredPosition = lookAt.position + offset;
+        desiredPosition.x = 0;
+        desiredPosition.y = 5;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime);
     }
 }
