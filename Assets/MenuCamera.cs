@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuCamera : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class MenuCamera : MonoBehaviour
         canvas.SetActive(false);
         anim1.SetTrigger("Go");
         anim2.SetTrigger("Gogo 0");
+        StartCoroutine(MoveLevel());
     }
 
     public void goLight() {
@@ -37,4 +39,14 @@ public class MenuCamera : MonoBehaviour
     public void enable() {
         particleSystem.Play();
     }
+
+    public void quit() {
+        Application.Quit();
+    }
+
+    IEnumerator MoveLevel() {
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene(0);
+    } 
+
 }
