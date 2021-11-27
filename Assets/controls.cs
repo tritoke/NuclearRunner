@@ -9,11 +9,16 @@ public class controls : MonoBehaviour
     public float playerSpeed = 5f;
     //public float playerJumpHeight = 1f;
     public float changeLaneSpeed = 10f;
-    public float gravity = 12f;
+    //public float gravity = 12f;
 
     [Header("Lane Properties")]
     public float laneWidth = 1.5f;
     private int laneIndex = 0;
+
+    [Header("Rotation Properties")]
+    float temp;
+    bool isRotating;
+    int horizontalDirection;
 
     private CharacterController myCharacterController;
     private Vector3 velocity;
@@ -31,6 +36,7 @@ public class controls : MonoBehaviour
         Move();
     }
 
+
     private void Move()
     {
 
@@ -47,7 +53,7 @@ public class controls : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                print("right");
+                print("Right");
                 if (laneIndex == 0 || laneIndex == -1)
                 {
                     laneIndex++;
