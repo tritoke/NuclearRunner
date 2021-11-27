@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class controls : MonoBehaviour
 {
-
     [Header("Player Properties")]
     public float playerSpeed = 5f;
     //public float playerJumpHeight = 1f;
@@ -59,7 +58,7 @@ public class controls : MonoBehaviour
                     laneIndex++;
                 }
             }
-            else if (myCharacterController.isGrounded)
+            else //if (myCharacterController.isGrounded)
             {
                 velocity = Vector3.forward * playerSpeed;
 
