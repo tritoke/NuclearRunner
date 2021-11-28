@@ -3,12 +3,28 @@ guid: a19387aea29a7c246a9008de7f6e4821
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: 347b75b780954cd4da3ee381cbafcd5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fassade
+    second: {fileID: 2077398097570273227, guid: e0fa67b50b06da24e89a493c9597788e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rusty
+    second: {fileID: 446362431170090573, guid: e0fa67b50b06da24e89a493c9597788e, type: 3}
   materials:
     materialImportMode: 1
-    materialName: 0
+    materialName: 1
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
