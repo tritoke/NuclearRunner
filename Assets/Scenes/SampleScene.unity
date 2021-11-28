@@ -166,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 4437185014927823484, guid: 2e85673a4c9eeda48847ff11a25c68ba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4437185014927823484, guid: 2e85673a4c9eeda48847ff11a25c68ba,
         type: 3}
@@ -285,7 +285,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &790867796 stripped
 GameObject:
@@ -447,7 +447,7 @@ PrefabInstance:
     - target: {fileID: 4161022756151953869, guid: 71f84c73080508141aa76d871ce96d11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4161022756151953869, guid: 71f84c73080508141aa76d871ce96d11,
         type: 3}
@@ -469,10 +469,5 @@ PrefabInstance:
       propertyPath: PlayerReference
       value: 
       objectReference: {fileID: 790867796}
-    - target: {fileID: 8430653684909561374, guid: 71f84c73080508141aa76d871ce96d11,
-        type: 3}
-      propertyPath: PATH_END_DISTANCE
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71f84c73080508141aa76d871ce96d11, type: 3}

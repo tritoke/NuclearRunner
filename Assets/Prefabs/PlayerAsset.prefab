@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4437185014927823487}
   m_Layer: 0
   m_Name: PlayerAsset
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,9 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpForce: 8
+  jumpForce: 15
   gravity: 20
-  playerModel: {fileID: 4437185016201747329}
 --- !u!1 &4437185016201747329
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ GameObject:
   - component: {fileID: 4437185016201747331}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

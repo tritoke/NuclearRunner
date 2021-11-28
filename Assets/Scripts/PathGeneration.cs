@@ -1,24 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PathGeneration : MonoBehaviour
 {
-    [SerializeField]
-    private float PATH_END_DISTANCE = 100.0f;
     private const float PATH_START_DISTANCE = -5.0f;
 
     [SerializeField]
-    private List<GameObject> PathPrefabs;
+    private float PATH_END_DISTANCE = 100.0f;
+
+    [SerializeField]
+    private List<GameObject> PathPrefabs = new List<GameObject>();
+
+    [SerializeField]
+    private List<GameObject> ObstaclePrefabs = new List<GameObject>();
+
+    private Vector3 LastPathPosition = new Vector3(0, 0, 0);
+    private Queue<GameObject> PathObjects = new Queue<GameObject>();
+    private int NumTilesInstantiated = 0;
 
     private PlayerController PlayerControllerRef;
 
-    private Vector3 LastPathPosition;
-    private Queue<GameObject> PathObjects = new Queue<GameObject>();
+    private System.Random rng = new System.Random();
 
     void Init()
     {
-        LastPathPosition = new Vector3(0, 0, 0);
         PlayerControllerRef = FindObjectOfType<PlayerController>();
 
         //populate list and spawn initial path
@@ -80,10 +87,27 @@ public class PathGeneration : MonoBehaviour
         LastPathPosition += Vector3.Scale(renderer.bounds.size, Vector3.forward);
 
         // create instance
-        var pathInstance = Instantiate(prefab, LastPathPosition, Quaternion.identity);
+        var tile = Instantiate(prefab, LastPathPosition, Quaternion.identity);
+        NumTilesInstantiated++;
+
+        // generate obstacles
+        var tileController = tile.GetComponent<TileController>();
+        if (NumTilesInstantiated % 10 == 0)
+        {
+            var pattern = GetRandomObstacle();
+
+            tileController.GenerateObstaclePattern(pattern, ObstaclePrefabs[0]);
+        }
 
         // enqueue instance
-        PathObjects.Enqueue(pathInstance);
+        PathObjects.Enqueue(tile);
+    }
+
+    private TileController.ObstaclePattern GetRandomObstacle()
+    {
+        var variants = Enum.GetValues(typeof(TileController.ObstaclePattern));
+        var index = rng.Next(variants.Length);
+        return (TileController.ObstaclePattern) variants.GetValue(index);
     }
 
     private void DestroyPath()

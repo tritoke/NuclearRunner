@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af01ddb7018ae345ac9c2c57a2a51f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PATH_END_DISTANCE: 1000
+  PATH_END_DISTANCE: 100
   PathPrefabs:
   - {fileID: 5914123620213422323, guid: f7078ee349cc4df40addd8ada5f80f57, type: 3}
+  ObstaclePrefabs:
+  - {fileID: 5321404385109908312, guid: 04885d693fd56fc43bbe16f351438b7e, type: 3}
