@@ -6,11 +6,36 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ch20_body
+    second: {fileID: 2100000, guid: 39d6189466de99b4f94282e9e5e3c56c, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ch20_1001_Diffuse
+    second: {fileID: 2800000, guid: 2e1050bae68b489459b8827f0fafeabe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ch20_1001_Glossiness
+    second: {fileID: 2800000, guid: 4e0d24fb89552ab458eacc43c3856cf6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ch20_1001_Normal
+    second: {fileID: 2800000, guid: 49533f3f360cc29479ef53fac5e570ff, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ch20_1001_Specular
+    second: {fileID: 2800000, guid: d3ec8394394aa8d4bb5ac58425c2fbad, type: 3}
   materials:
     materialImportMode: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

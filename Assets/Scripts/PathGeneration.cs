@@ -6,11 +6,11 @@ using UnityEngine;
 public class PathGeneration : MonoBehaviour
 {
     [SerializeField]
-    private float PATH_START_DISTANCE = -50.0f;
+    private float PATH_START_DISTANCE = -100.0f;
     // TODO: Replace with length of tile
 
     [SerializeField]
-    private float PATH_END_DISTANCE = 100.0f;
+    private float PATH_END_DISTANCE = 1000.0f;
 
     [SerializeField]
     private List<GameObject> PathPrefabs = new List<GameObject>();
@@ -84,7 +84,7 @@ public class PathGeneration : MonoBehaviour
     private void SpawnPath()
     {
         // choose prefab
-        var prefab = PathPrefabs[0];
+        var prefab = PathPrefabs[UnityEngine.Random.Range(0, PathPrefabs.Count)];
         var renderer = prefab.GetComponent<MeshRenderer>();
 
         // calculate new position
