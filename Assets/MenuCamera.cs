@@ -46,7 +46,7 @@ public class MenuCamera : MonoBehaviour
 
     IEnumerator MoveLevel() {
         yield return new WaitForSeconds(6);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     } 
 
 }
