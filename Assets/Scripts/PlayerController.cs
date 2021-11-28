@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource jumpSound;
 
+    public Animator anim;
+
     private CharacterController myCharacterController;
 
     private void Start()
@@ -57,8 +59,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Jump
+                
                 verticalVelocity = jumpForce;
                 jumpSound.Play();
+                anim.SetTrigger("jump");
             }
         } 
         else
@@ -67,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                
                 verticalVelocity = -jumpForce;
             }
         }
