@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity;
     private int desiredLane = 1;
 
+    public AudioSource jumpSound;
+
     private CharacterController myCharacterController;
 
     private void Start()
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Jump
                 verticalVelocity = jumpForce;
+                jumpSound.Play();
             }
         } 
         else
