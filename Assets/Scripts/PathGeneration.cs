@@ -96,7 +96,7 @@ public class PathGeneration : MonoBehaviour
 
         // generate obstacles
         var tileController = tile.GetComponent<TileController>();
-        if (NumTilesInstantiated % 10 == 0)
+        if (NumTilesInstantiated > 15)
         {
             var pattern = GetRandomObstacle();
 
