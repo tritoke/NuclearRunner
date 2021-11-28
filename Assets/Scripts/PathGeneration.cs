@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PathGeneration : MonoBehaviour
 {
-    private const float PATH_START_DISTANCE = -5.0f;
+    [SerializeField]
+    private float PATH_START_DISTANCE = -50.0f;
+    // TODO: Replace with length of tile
 
     [SerializeField]
     private float PATH_END_DISTANCE = 100.0f;
@@ -16,7 +18,7 @@ public class PathGeneration : MonoBehaviour
     [SerializeField]
     private List<GameObject> ObstaclePrefabs = new List<GameObject>();
 
-    private Vector3 LastPathPosition = new Vector3(0, 0, 0);
+    private Vector3 LastPathPosition;
     private Queue<GameObject> PathObjects = new Queue<GameObject>();
     private int NumTilesInstantiated = 0;
 
@@ -27,6 +29,8 @@ public class PathGeneration : MonoBehaviour
     void Init()
     {
         PlayerControllerRef = FindObjectOfType<PlayerController>();
+
+        LastPathPosition = Vector3.forward * PATH_START_DISTANCE;
 
         //populate list and spawn initial path
         while (PathNeedsExtending())
