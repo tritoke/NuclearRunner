@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.30918473, g: 0.33962262, b: 0.3135532, a: 1}
+  m_FogColor: {r: 0.4339623, g: 0.26945856, b: 0.25996798, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0.03
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -202,6 +202,16 @@ PrefabInstance:
         type: 3}
       propertyPath: gravity
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599570177841820219, guid: 2e85673a4c9eeda48847ff11a25c68ba,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599570177841820219, guid: 2e85673a4c9eeda48847ff11a25c68ba,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.033
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e85673a4c9eeda48847ff11a25c68ba, type: 3}
