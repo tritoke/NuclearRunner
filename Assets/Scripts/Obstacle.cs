@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Obstacle : MonoBehaviour
 {
-    private static int Score = 0;
+    private static int Score;
 
     void OnTriggerEnter(Collider collision)
     {
@@ -22,8 +22,17 @@ public class Obstacle : MonoBehaviour
         }
     }
 
+    public static void ResetScore()
+    {
+        Score = 0;
+    }
+
     void OnDestroy()
     {
-        Score++;
+        var pcr = FindObjectOfType<PlayerController>();
+        if (pcr != null && transform.position.z < pcr.transform.position.z)
+        {
+            Score++;
+        }
     }
 }
