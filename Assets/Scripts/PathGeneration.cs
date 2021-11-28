@@ -5,28 +5,28 @@ using UnityEngine;
 public class PathGeneration : MonoBehaviour
 {
     [SerializeField]
-    private const float RESPAWN_TIME = 1.0f;
-
-    [SerializeField]
-    private int PathLength = 10;
+    private float PATH_END_DISTANCE = 100.0f;
+    private const float PATH_START_DISTANCE = -5.0f;
 
     [SerializeField]
     private List<GameObject> PathPrefabs;
 
+    private PlayerController PlayerControllerRef;
+
     private Vector3 LastPathPosition;
     private Queue<GameObject> PathObjects = new Queue<GameObject>();
-    private float TimeSinceLastObject;
 
     void Init()
     {
         LastPathPosition = new Vector3(0, 0, 0);
-        TimeSinceLastObject = 0.0f;
+        PlayerControllerRef = FindObjectOfType<PlayerController>();
 
         //populate list and spawn initial path
-        for (int i = 0; i < PathLength; i++)
+        while (PathNeedsExtending())
         {
             SpawnPath();
         }
+
     }
 
     void Start()
@@ -38,20 +38,36 @@ public class PathGeneration : MonoBehaviour
 
     void Update()
     {
-        TimeSinceLastObject += Time.deltaTime;
-
         //check if we should generate new path
-        if (TimeSinceLastObject > RESPAWN_TIME)
+        while (PathNeedsExtending())
         {
             //generate path
             SpawnPath();
-
-            //destroy old one
-            DestroyPath();
-
-            //reset the time
-            TimeSinceLastObject = 0.0f;
         }
+
+        //check if we can delete path
+        while (PathOutOfView())
+        {
+            //remove path
+            DestroyPath();
+        }
+    }
+
+    private bool PathNeedsExtending()
+    {
+        //get distance between player and last added path object
+        var playerPos = PlayerControllerRef.transform.position;
+        var difference = Vector3.Scale(playerPos - LastPathPosition, Vector3.forward).magnitude;
+        return difference < PATH_END_DISTANCE;
+    }
+
+    private bool PathOutOfView()
+    {
+        //get distance between player and last path object
+        var playerZPos = PlayerControllerRef.transform.position.z;
+        var lastTileZPos = PathObjects.Peek().transform.position.z;
+        var zDiff = lastTileZPos - playerZPos;
+        return zDiff < PATH_START_DISTANCE;
     }
 
     private void SpawnPath()

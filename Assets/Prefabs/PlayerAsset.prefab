@@ -63,9 +63,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822cc422a22235a43a7c5042d93d169b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
-  changeLaneSpeed: 10
-  laneWidth: 1.5
+  speed: 3
+  jumpForce: 8
+  gravity: 20
+  playerModel: {fileID: 4437185016201747329}
 --- !u!1 &4437185016201747329
 GameObject:
   m_ObjectHideFlags: 0
