@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-    public static int ObstaclesPassed { get; private set; } = 0;
-
     [SerializeField]
     private GameObject SpawnPointL;
 
@@ -23,12 +21,8 @@ public class TileController : MonoBehaviour
         LowBar,
     };
 
-    private bool HasObstacle = false;
-
     public void GenerateObstaclePattern(ObstaclePattern pattern, GameObject obstaclePrefab)
     {
-        HasObstacle = true;
-
         switch (pattern) 
         {
             case ObstaclePattern.Left:
@@ -55,10 +49,5 @@ public class TileController : MonoBehaviour
     {
         var obstacle = Instantiate(prefab, point.transform.position, Quaternion.identity);
         obstacle.transform.SetParent(transform);
-    }
-
-    void OnDelete()
-    {
-        ObstaclesPassed++;
     }
 }
