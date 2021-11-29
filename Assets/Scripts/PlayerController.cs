@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SoundRandomiser))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     private const float LANE_DISTANCE = 3.0f;
     private const float TURN_SPEED = 0.05f;
 
     [SerializeField]
-    private float speed = 5.0f;
+    public float speed = 5.0f;
 
     [SerializeField]
     private float jumpForce = 8.0f;
@@ -19,16 +21,15 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity;
     private int desiredLane = 1;
 
-    public AudioSource jumpSound;
+    private SoundRandomiser jumpSounds;
+    private CharacterController myCharacterController;
 
     public Animator anim;
-
-    private CharacterController myCharacterController;
 
     private void Start()
     {
         myCharacterController = GetComponent<CharacterController>();
-   
+        jumpSounds = GetComponent<SoundRandomiser>();
     }
 
     private void Update()
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
                 // Jump
                 
                 verticalVelocity = jumpForce;
-                jumpSound.Play();
+                jumpSounds.PlayRandom();
                 anim.SetTrigger("jump");
             }
         } 

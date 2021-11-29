@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class Obstacle : MonoBehaviour
 {
     private static int Score;
 
-    public AudioSource crashSound;
+    [SerializeField]
+    private AudioClip DeathClip;
+
+    [SerializeField]
+    private AudioClip HoldClip;
 
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            //game over
-            crashSound.Play();
-            Debug.Log("GAME OVER");
+            // pause the engine sounds
+            var player = collision.gameObject.transform.parent.GetChild(0);
+            player.GetComponent<AudioSource>().Pause();
+
+            // play our sounds
+            StartCoroutine(playSound());
 
             Time.timeScale = 0.0f;
-            var canvas = GameObject.FindGameObjectsWithTag("Game Over Canvas")[0];
+            var canvas = GameObject.FindWithTag("Game Over Canvas");
             var innerCanvas = canvas.GetComponent<Canvas>();
             innerCanvas.enabled = true;
 
@@ -26,6 +34,16 @@ public class Obstacle : MonoBehaviour
             var scoreTextInner = scoreText.GetComponent<Text>();
             scoreTextInner.text = $"score {Score}";
         }
+    }
+
+    IEnumerator playSound()
+    {
+        GetComponent<AudioSource>().clip = DeathClip;
+        GetComponent<AudioSource>().Play();
+        yield return new WaitForSecondsRealtime(DeathClip.length);
+        GetComponent<AudioSource>().clip = HoldClip;
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().loop = true;
     }
 
     public static void ResetScore()
@@ -39,6 +57,7 @@ public class Obstacle : MonoBehaviour
         if (pcr != null && transform.position.z < pcr.transform.position.z)
         {
             Score++;
+            pcr.speed++;
         }
     }
 }
