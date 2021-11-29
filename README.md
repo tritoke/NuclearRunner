@@ -1,6 +1,9 @@
 # NuclearRunner
 Riding into the sunset of the apocalypse.
 
+This repo is a modified version of Team CSS's submission for Great Uni Hack 2021.
+We Received an honurable mention for the project.
+
 Demo: [demo video](https://www.youtube.com/watch?v=PnKKblqipSw)
 
 ## Inspiration
