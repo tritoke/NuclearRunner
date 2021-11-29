@@ -1,4 +1,4 @@
-# NuclearRunner
+# Blast Zone
 Riding into the sunset of the apocalypse.
 
 This repo is a modified version of Team CSS's submission for Great Uni Hack 2021.
