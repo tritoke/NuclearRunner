@@ -1,7 +1,7 @@
 # NuclearRunner
 Riding into the sunset of the apocalypse.
 
-Demo: ![demo video](https://www.youtube.com/watch?v=PnKKblqipSw)
+Demo: [demo video](https://www.youtube.com/watch?v=PnKKblqipSw)
 
 ## Inspiration
 We took inspiration from endless runners such as Subway Surfer and Temple Run. The name references a classic rule of thumb about how long you have to escape a Nuclear Fallout area.
