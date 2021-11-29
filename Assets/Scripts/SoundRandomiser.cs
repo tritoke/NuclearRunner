@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using Random = System.Random;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundRandomiser : MonoBehaviour
@@ -12,19 +9,16 @@ public class SoundRandomiser : MonoBehaviour
     private List<AudioClip> clips;
 
     private AudioSource source;
-    private Random rng;
 
     void Start()
     {
         source = GetComponent<AudioSource>();
-        rng = new Random();
     }
 
     public void PlayRandom()
     {
-        var index = rng.Next(clips.Count);
+        var index = Random.Range(0, clips.Count);
         var clip = clips[index];
         source.PlayOneShot(clip);
     }
-
 }

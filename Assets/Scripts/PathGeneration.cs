@@ -1,16 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 public class PathGeneration : MonoBehaviour
 {
     [SerializeField]
-    private float PATH_START_DISTANCE = -100.0f;
-    // TODO: Replace with length of tile
-
-    [SerializeField]
     private float PATH_END_DISTANCE = 1000.0f;
+    private float PATH_START_DISTANCE;
 
     [SerializeField]
     private List<GameObject> PathPrefabs = new List<GameObject>();
@@ -24,11 +21,15 @@ public class PathGeneration : MonoBehaviour
 
     private PlayerController PlayerControllerRef;
 
-    private System.Random rng = new System.Random();
-
-    void Init()
+    void Start()
     {
-        PlayerControllerRef = FindObjectOfType<PlayerController>();
+        PlayerControllerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
+        Debug.Log(PathPrefabs[0]);
+
+        var prefab = PathPrefabs[0];
+        var renderer = prefab.GetComponent<MeshRenderer>();
+        PATH_START_DISTANCE = -1 * renderer.bounds.size.z;
 
         LastPathPosition = Vector3.forward * PATH_START_DISTANCE;
 
@@ -38,13 +39,8 @@ public class PathGeneration : MonoBehaviour
             SpawnPath();
         }
 
-    }
-
-    void Start()
-    {
-        //get origin/start pos
-        //populate list
-        Init();
+        // var pcr = transform.parent;
+        // Debug.Log($"pcr = {pcr}");
     }
 
     void Update()
@@ -96,7 +92,7 @@ public class PathGeneration : MonoBehaviour
 
         // generate obstacles
         var tileController = tile.GetComponent<TileController>();
-        if (NumTilesInstantiated > 15)
+        if (NumTilesInstantiated > 5)
         {
             var pattern = GetRandomObstacle();
 
@@ -110,7 +106,7 @@ public class PathGeneration : MonoBehaviour
     private TileController.ObstaclePattern GetRandomObstacle()
     {
         var variants = Enum.GetValues(typeof(TileController.ObstaclePattern));
-        var index = rng.Next(variants.Length);
+        var index = UnityEngine.Random.Range(0, variants.Length);
         return (TileController.ObstaclePattern) variants.GetValue(index);
     }
 

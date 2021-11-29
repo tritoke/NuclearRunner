@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4161022756151953869}
-  - component: {fileID: 8430653684909561374}
+  - component: {fileID: -2038872679920752173}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8430653684909561374
+--- !u!114 &-2038872679920752173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af01ddb7018ae345ac9c2c57a2a51f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PATH_START_DISTANCE: -500
   PATH_END_DISTANCE: 1000
   PathPrefabs:
+  - {fileID: 9147909730249844087, guid: 64dc7b3a0c34b594b93520d7dc5965bd, type: 3}
+  - {fileID: 6686389078043482634, guid: 5f82e14c27a632e4bbf62e93dc528411, type: 3}
   - {fileID: 5914123620213422323, guid: f7078ee349cc4df40addd8ada5f80f57, type: 3}
   ObstaclePrefabs:
   - {fileID: 5321404385109908312, guid: 04885d693fd56fc43bbe16f351438b7e, type: 3}

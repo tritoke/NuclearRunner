@@ -10,7 +10,6 @@ public class ButtonController : MonoBehaviour
         var scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
         Time.timeScale = 1.0f;
-        Obstacle.ResetScore();
     }
 
     public void Quit()

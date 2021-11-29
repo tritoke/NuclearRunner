@@ -14,10 +14,20 @@ public class Obstacle : MonoBehaviour
     [SerializeField]
     private AudioClip HoldClip;
 
+    private PlayerController PlayerControllerRef;
+
+    void Start()
+    {
+        PlayerControllerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
+
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "PlayerHitBox")
         {
+            // stop time moving forwards
+            Time.timeScale = 0.0f;
+
             // pause the engine sounds
             var player = collision.gameObject.transform.parent.GetChild(0);
             player.GetComponent<AudioSource>().Pause();
@@ -25,14 +35,18 @@ public class Obstacle : MonoBehaviour
             // play our sounds
             StartCoroutine(playSound());
 
-            Time.timeScale = 0.0f;
+            // enable the game over screen
             var canvas = GameObject.FindWithTag("Game Over Canvas");
             var innerCanvas = canvas.GetComponent<Canvas>();
             innerCanvas.enabled = true;
 
+            // fill in the score
             var scoreText = canvas.transform.Find("ScoreText").gameObject;
             var scoreTextInner = scoreText.GetComponent<Text>();
             scoreTextInner.text = $"score {Score}";
+
+            // reset the score
+            Score = 0;
         }
     }
 
@@ -46,18 +60,12 @@ public class Obstacle : MonoBehaviour
         GetComponent<AudioSource>().loop = true;
     }
 
-    public static void ResetScore()
-    {
-        Score = 0;
-    }
-
     void OnDestroy()
     {
-        var pcr = FindObjectOfType<PlayerController>();
-        if (pcr != null && transform.position.z < pcr.transform.position.z)
+        if (transform.position.z < PlayerControllerRef.transform.position.z)
         {
             Score++;
-            pcr.speed++;
+            PlayerControllerRef.speed++;
         }
     }
 }

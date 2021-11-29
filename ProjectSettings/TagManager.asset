@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Game Over Canvas
   - RestartButton
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX
