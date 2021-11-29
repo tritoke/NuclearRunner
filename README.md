@@ -4,6 +4,8 @@ Riding into the sunset of the apocalypse.
 This repo is a modified version of Team CSS's submission for Great Uni Hack 2021.
 We Received an honurable mention for the project.
 
+![gameplay image](https://user-images.githubusercontent.com/34941249/143912524-28d1925b-9b62-4030-bd3d-b916685445e7.png)
+
 Demo: [demo video](https://www.youtube.com/watch?v=PnKKblqipSw)
 
 ## Inspiration
